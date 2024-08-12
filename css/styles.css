@@ -1,0 +1,129 @@
+
+body {
+    font-family: 'Comic Neue', cursive;
+    margin: 20px;
+    padding: 0;
+    background-color: #051f03;
+}
+
+h1 {
+    font-size: 36px; 
+    color: #fff6f6; 
+    font-weight: bold; 
+    margin-bottom: 20px;
+    text-align: center; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+h2 {
+    font-size: 28px; 
+    color: #fff6f6; 
+    font-weight: bold; 
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+h3 {
+    font-size: 15px; 
+    color: #fff6f6; 
+    font-weight: bold; 
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+/* productos*/
+#juegos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* card */
+#juegos div {
+    background: #afe49f;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* agregar al carrito */
+.productoAgregar {
+    background-color: #28a745;
+    border: none;
+    color: #c8eec8;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.productoAgregar:hover {
+    background-color: #218838;
+}
+
+/* sumar/restar */
+#plus-button, #minus-button {
+    background-color: #15ff00;
+    border: none;
+    color: #c8eec8;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+}
+
+#plus-button:hover, #minus-button:hover {
+    background-color: #00b351;
+}
+
+/* counter */
+#counter {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* mensajes */
+#stock-message, #total-message {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* productos en cart */
+#cart-products {
+    margin-top: 20px;
+}
+
+/* seleccion */
+input[type="text"], select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #2e8b4d;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #047c22;
+    border: none;
+    color: #a9aae4;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0c3a06;
+}
+
+button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
