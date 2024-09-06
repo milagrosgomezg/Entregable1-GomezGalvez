@@ -32,7 +32,6 @@ try {
     }
 };
 
-
 // productos
 const juegos = [
    
@@ -334,16 +333,25 @@ function addToCartButton() {
     });
 }
 
-// función para agregar un producto al carrito
-function addToCart(productId) {
-    if (!cart[productId]) {
-        cart[productId] = { quantity: 0 };
+function addToCart(product) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        existingProduct.quantity += product.quantity;
+    } else {
+        cart.push(product);
     }
-    cart[productId].quantity += 1;
+
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCounter();
-    updateCartModal();
-    showSuccessMessage('Producto agregado al carrito');
+    Toastify({
+        text: "Producto añadido al carrito",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: 'right',
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+    }).showToast();
 }
 
 // actualizar el carrito
@@ -415,27 +423,6 @@ function removeFromCart(productId) {
         showSuccessMessage('Producto eliminado del carrito');
     }
 }
-
-// vaciar el carrito
-function emptyCart() {
-    Swal.fire({
-      title: "¿Desea vaciar el carrito?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Si",
-      denyButtonText: `No`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        cartProducts = [];
-        updateCart();
-        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-        
-        Swal.fire("Su carrito ha sido vaciado. Puede volver a iniciar su compra si lo desea");
-      } else if (result.isDenied) {
-        Swal.fire("Siga comprando! Su carrito no fue vaciado");
-      }
-    });
-  }
 
 
 // función para finalizar la compra
