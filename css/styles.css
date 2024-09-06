@@ -1,129 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-body {
-    font-family: 'Comic Neue', cursive;
+/* VARIABLES */
+:root {
+    --main-bg-color: #051f03;
+    --card-bg-color: #578549;
+    --button-bg-color: #28a745;
+    --button-bg-color-hover: #218838;
+    --button-color: #c8eec8;
+    --counter-color: #15ff00;
+    --counter-bg-color-hover: #00b351;
+    --text-color: #f1e1e1;
+    --border-color: #2e8b4d;
+    --button-color-disabled: #6c757d;
+    --button-bg-color-disabled: #047c22;
+}
+
+/* FONT STYLES */
+.bebas-neue-regular, body {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 20px;
     padding: 0;
-    background-color: #051f03;
+    background-color: var(--main-bg-color);
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+    color: var(--text-color);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-    font-size: 36px; 
-    color: #fff6f6; 
-    font-weight: bold; 
+    font-size: 90px; 
     margin-bottom: 20px;
-    text-align: center; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+    text-align: center;
 }
 
 h2 {
     font-size: 28px; 
-    color: #fff6f6; 
-    font-weight: bold; 
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 h3 {
-    font-size: 15px; 
-    color: #fff6f6; 
-    font-weight: bold; 
+    font-size: 30px; 
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
-/* productos*/
+/* CONTAINER */
 #juegos {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-/* card */
 #juegos div {
-    background: #afe49f;
-    border: 1px solid #ddd;
+    background-color: var(--card-bg-color);
+    border: 1px solid #00220a;
     border-radius: 8px;
     padding: 20px;
-    width: 200px;
+    width: 200px; 
+    min-height: 350px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* agregar al carrito */
-.productoAgregar {
-    background-color: #28a745;
+/* BUTTONS */
+button, .productoAgregar, #plus-button, #minus-button {
     border: none;
-    color: #c8eec8;
+    color: var(--button-color);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-}
-
-.productoAgregar:hover {
-    background-color: #218838;
-}
-
-/* sumar/restar */
-#plus-button, #minus-button {
-    background-color: #15ff00;
-    border: none;
-    color: #c8eec8;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+    background-color: var(--button-bg-color);
     margin: 5px;
+    display: inline-block;
 }
 
-#plus-button:hover, #minus-button:hover {
-    background-color: #00b351;
+button {
+    background-color: var(--button-bg-color-disabled);
+    color: var(--text-color);
 }
 
-/* counter */
-#counter {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0;
+button:hover, .productoAgregar:hover, #plus-button:hover, #minus-button:hover {
+    background-color: var(--button-bg-color-hover);
 }
 
-/* mensajes */
+button:disabled {
+    background-color: var(--button-color-disabled);
+    cursor: not-allowed;
+}
+
+/* MESSAGES */
 #stock-message, #total-message {
     margin: 20px 0;
     font-size: 18px;
     font-weight: bold;
 }
 
-/* productos en cart */
-#cart-products {
-    margin-top: 20px;
+/* MODAL */
+#cart-modal {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    z-index: 1000;
 }
 
-/* seleccion */
+.hidden {
+    display: none;
+}
+
+/* INPUT  */
 input[type="text"], select {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #2e8b4d;
+    border: 1px solid var(--border-color);
     font-size: 14px;
     width: 100%;
     max-width: 300px;
     margin-right: 10px;
 }
 
-button {
-    background-color: #047c22;
-    border: none;
-    color: #a9aae4;
-    padding: 10px 15px;
-    border-radius: 5px;
+/* LOGO  */
+.logo-carrito {
+    z-index: 1050;
+    top: 10px;
+    right: 10px;
+}
+
+.boton-menu.boton-carrito {
+    width: 100px;
+    height: 50px;
     cursor: pointer;
-    font-size: 14px;
 }
 
-button:hover {
-    background-color: #0c3a06;
+/* TODO */
+.todo {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: var(--main-bg-color);
 }
 
-button:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
+.aside {
+    padding: 2rem 0 2rem 2rem;
+    color: var(--button-color);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.boton-menu {
+    background-color: transparent;
+    border: 0;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.boton-menu.active {
+    background-color: var(--counter-bg-color-hover);
+    color: var(--main-bg-color);
+    border-radius: 1rem 0 0 1rem;
+}
+
+/* MAIN  */
+.main {
+    background-color: var(--button-bg-color-hover);
+    margin: 2rem auto 0;
+    border-radius: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+}
+
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* PRODUCTO */
+.juego {
+    background-color: var(--counter-bg-color-hover);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+    box-sizing: border-box; 
+}
+
+.producto-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.producto-detalle {
+    background-color: var(--card-bg-color);
+    color: #c8cfc9;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 0;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+}
+
+/* CARRITO */
+.contenedor-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.carrito-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.carrito-juego {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.carrito-juego-img {
+    width: 8rem;
+    border-radius: 2rem;
+}
+
+.carrito-juego small {
+    font-size: 0.75rem;
+}
+
+.carrito-juego-eliminar {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.carrito-juego-eliminar:hover {
+    background-color: #ff0000;
+    color: var(--button-color);
+}
+
+/* CART ACTIONS */
+.carrito-quehacer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carrito-quehacer-vaciar,
+.carrito-quehacer-comprar {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.carrito-quehacer-vaciar {
+    background-color: var(--button-bg-color-hover);
+}
+
+.carrito-quehacer-comprar {
+    background-color: var(--button-bg-color-disabled);
+    text-transform: uppercase;
+}
+
+.carrito-quehacer-comprar:hover {
+    background-color: var(--counter-color);
+}
+
+.carrito-quehacer-total {
+    display: flex;
+    background-color: var(--counter-bg-color-hover);
+    padding: 1rem;
+    border-radius: 1rem;
+    color: var(--main-bg-color);
+    cursor: pointer;
 }

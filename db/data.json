@@ -1,0 +1,137 @@
+ 
+[
+
+ {
+        "id": 1,
+        "nombre": "balancin",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": true,
+        "precio": 50000
+    },
+   {
+        "id": 2,
+        "nombre": "torre de aprendizaje",
+        "material": "madera",
+        "color": "marron",
+        "montessori": true,
+        "precio": 50000
+    },
+    {
+        "id": 3,
+        "nombre": "tobogan",
+        "material": "madera",
+       " color": "celeste",
+       " montessori": false,
+       " precio": 40000
+    },
+    
+    {
+        "id": 4,
+        "nombre": "sube y baja",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": false,
+        "precio": 40000
+    },
+    
+   {
+       "id": 5,
+        "nombre": "rampa",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": true,
+        "precio": 50000
+    },
+    
+    {
+        "id": 6,
+        "nombre": "juguete de arrastre",
+        "material": "madera",
+        "color": "verde",
+        "montessori": false,
+        "precio": 40000
+    },
+    
+   {
+        "id": 7,
+        "nombre": "pata pata",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": true,
+        "precio": 45000
+    },
+    
+    {
+        "id": 8,
+        "nombre": "hamaca",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": false,
+        "precio": 20000
+    },
+    
+    {
+        "id": 9,
+        "nombre": "tablero sensorial",
+        "material": "madera",
+        "color": "rosa",
+        "montessori": true,
+        "precio": 30000
+    },
+    
+   {
+        "id": 10,    
+        "nombre": "xilofon",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": false,
+        "precio": 25000
+    },
+    
+  {
+        "id": 11,
+        "nombre": "encastre",
+        "material": "madera",
+        "color": "multicolor",
+        "montessori": true,
+        "precio": 15000
+    },
+    
+    {
+        "id": 12,
+        "nombre": "rampa de autos",
+        "material": "madera",
+        "color": "rojo",
+        "montessori": false,
+        "precio": 25000
+    },
+    
+    {
+        "id": 13,
+        "nombre": "juego de platos",
+        "material": "madera",
+        "color": "marron",
+        "montessori": false,
+        "precio": 25000
+    },
+    
+   {
+        "id": 14,
+        "nombre": "equilibristas",
+        "material": "madera",
+        "color": "marron",
+        "montessori": false,
+        "precio": 15000
+    },
+    
+   {
+        "id": 15,
+        "nombre": "animales",
+        "material": "madera",
+        "color": "marron",
+        "montessori": false,
+        "precio": 10000
+    }
+    
+]
