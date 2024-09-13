@@ -1,1 +1,6 @@
-El usuario es "test" y la contraseña "123".
+READ ME REENTREGA
+Buenas! Muchas gracias por los comentarios. 
+Cambie muchas cosas, espero que esta vez funcione: Entre las más importantes: saque el atributo que estaba en el html y ahora esta en el js; saque los DOMContent y los cambie por ruteos; en las cards solo quedaron los botones + y -; al final de la página se muestra el vaciar carrito y ahora funciona; agregue el fetch al JSON que ahora esta actualizado y ya no hay tantas líneas de código.
+Sobre el finalizar compra: saque el boton que decía "Finalizar compra" para que solo con tocar el carrito te lleve a la página donde se finaliza la compra. En dicha página aparecen los elementos seleccionados y la oportunidad de eliminarlos, es necesario loggearte para poder finalizar, y una vez finalizada te salta el resumen de compra. 
+Me gustó la idea de poder aumentar y disminuir las unidades con las tarjetas, y que luego en el carrito antes de finalizar puedas eliminar si no se desea. 
+Todo esta estilado. 

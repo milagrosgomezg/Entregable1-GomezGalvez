@@ -18,237 +18,53 @@
     <header>
         <h1 id="title">KIDDOSSORI</h1>
         <div class="logo-carrito">
-            <a class="boton-menu boton-carrito" href="./html/carrito.html">
+            <a class="boton-menu boton-carrito" href="./html/carrito.html" id="cart-icon">
                 <img src="./css/carrito.png" alt="Carrito de compras">
+                <span id="cart-count" class="cart-count hidden">0</span>
             </a>
         </div>
     </header>
 
     <br>
     <h3>Buscar Juego</h3>
-<div>
-    <input type="text" id="search-input" placeholder="Ingrese el nombre del producto">
-    <button id="search-button">Buscar</button>
-    <div id="stock-message"></div> 
-</div>
+    <div>
+        <input type="text" id="search-input" placeholder="Ingrese el nombre del producto">
+        <button id="search-button">Buscar</button>
+        <div id="stock-message"></div>
+    </div>
+    
     <h2>Productos</h2>
     <div class="todo">
-            <aside>
+        <aside>
             <nav>
                 <ul class="navbar">
-                   <li>
-                    <button class="boton-menu boton-nav active"><i class="bi bi-bricks"></i> TODOS LOS JUEGOS</button>
+                    <li>
+                        <button class="boton-menu boton-nav active"><i class="bi bi-bricks"></i> TODOS LOS JUEGOS</button>
                     </li>
                 </ul>
             </nav>
         </aside>
-<main>
-    <div id="products-container">
-        <div class="juego">
-            <img src="./css/balancin.jpg" alt="balancin" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Balancin</h3>
-                <p class="producto-precio">$50000</p>
-                <button class="productoSumar" data-id="1">+</button>
-                <button class="productoRestar" data-id="1">-</button>
-                <span class="cantidadProducto" data-id="1">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="1">Costo Total: $0</span>
+        <main>
+            <div id="products-container">
             </div>
-        </div>
+            <div id="total-message"></div>
+            <div id="cart-products"></div>
 
-            <div class="juego">
-            <img src="./css/torre-aprendizaje.jpg" alt="torre de aprendizaje" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Torre de aprendizaje</h3>
-                <p class="producto-precio">$50000</p>
-                <button class="productoSumar" data-id="2">+</button>
-                <button class="productoRestar" data-id="2">-</button>
-                <span class="cantidadProducto" data-id="2">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="2">Costo Total: $0</span>
+            <button id="empty-cart-button">Vaciar Carrito</button>
 
+            <div id="cart-modal" class="hidden">
+                <!-- contenido del carrito -->
+                <h2>Carrito de Compras</h2>
+                <div id="cart-items"></div>
+                <button id="finalizar-compra">Finalizar Compra</button>
+                <button id="close-cart-button">Cerrar</button>
             </div>
-        </div>
 
-            <div class="juego">
-            <img src="./css/tobogan.jpg" alt="tobogan" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Tobogan</h3>
-                <p class="producto-precio">$40000</p>
-                <button class="productoSumar" data-id="3">+</button>
-                <button class="productoRestar" data-id="3">-</button>
-                <span class="cantidadProducto" data-id="3">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="3">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/sube-baja.jpg" alt="sube y baja" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Sube y baja</h3>
-                <p class="producto-precio">$40000</p>
-                <button class="productoSumar" data-id="4">+</button>
-                <button class="productoRestar" data-id="4">-</button>
-                <span class="cantidadProducto" data-id="4">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="4">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/rampa.png" alt="rampa" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Rampa</h3>
-                <p class="producto-precio">$50000</p>
-                <button class="productoSumar" data-id="5">+</button>
-                <button class="productoRestar" data-id="5">-</button>
-                <span class="cantidadProducto" data-id="5">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="5">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/juguete-arrastre.jpg" alt="juguete de arrastre" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Juguete de Arrastre</h3>
-                <p class="producto-precio">$40000</p>
-                <button class="productoSumar" data-id="6">+</button>
-                <button class="productoRestar" data-id="6">-</button>
-                <span class="cantidadProducto" data-id="6">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="6">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/pata-pata.jpg" alt="pata-pata" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Pata Pata</h3>
-                <p class="producto-precio">$45000</p>
-                <button class="productoSumar" data-id="7">+</button>
-                <button class="productoRestar" data-id="7">-</button>
-                <span class="cantidadProducto" data-id="7">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="7">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/hamaca.jpeg" alt="hamaca" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Hamaca</h3>
-                <p class="producto-precio">$20000</p>
-                <button class="productoSumar" data-id="8">+</button>
-                <button class="productoRestar" data-id="8">-</button>
-                <span class="cantidadProducto" data-id="8">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="8">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/tablero-sensorial.png" alt="tablero sensorial" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Tablero Sensorial</h3>
-                <p class="producto-precio">$30000</p>
-                <button class="productoSumar" data-id="9">+</button>
-                <button class="productoRestar" data-id="9">-</button>
-                <span class="cantidadProducto" data-id="9">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="9">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/xilofon.png" alt="xilofon" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Xilofon</h3>
-                <p class="producto-precio">$25000</p>
-                <button class="productoSumar" data-id="10">+</button>
-                <button class="productoRestar" data-id="10">-</button>
-                <span class="cantidadProducto" data-id="10">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="10">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/encastre.jpg" alt="encastre" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Encastres</h3>
-                <p class="producto-precio">$15000</p>
-                <button class="productoSumar" data-id="11">+</button>
-                <button class="productoRestar" data-id="11">-</button>
-                <span class="cantidadProducto" data-id="11">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="11">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/rampa-autos.jpeg" alt="rampa de autos" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Rampa de autos</h3>
-                <p class="producto-precio">$25000</p>
-                <button class="productoSumar" data-id="12">+</button>
-                <button class="productoRestar" data-id="12">-</button>
-                <span class="cantidadProducto" data-id="12">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="12">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/juego-platos (1).jpeg" alt="juego de platos" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Juego de platos</h3>
-                <p class="producto-precio">$25000</p>
-                <button class="productoSumar" data-id="13">+</button>
-                <button class="productoRestar" data-id="13">-</button>
-                <br>
-                <span class="cantidadProducto" data-id="13">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="13">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/equilibristas.jpeg" alt="equilibristas" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Equilibristas</h3>
-                <p class="producto-precio">$15000</p>
-                <button class="productoSumar" data-id="14">+</button>
-                <button class="productoRestar" data-id="14">-</button>
-                <span class="cantidadProducto" data-id="14">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="14">Costo Total: $0</span>
-            </div>
-        </div>
-
-            <div class="juego">
-            <img src="./css/animales.jpeg" alt="animales" class="producto-img">
-            <div class="producto-detalle">
-                <h3 class="producto-titulo">Animales</h3>
-                <p class="producto-precio">$10000</p>
-                <button class="productoSumar" data-id="15">+</button>
-                <button class="productoRestar" data-id="15">-</button>
-                <span class="cantidadProducto" data-id="15">Cantidad: 0</span>
-                <span class="costoTotalProducto" data-id="15">Costo Total: $0</span>
-            </div>
-        </div>
+            <p id="purchase-message"></p>
+        </main>
     </div>
 
-    <div id="stock-message"></div>
-    <div id="total-message"></div>
-    <div id="cart-products"></div>
-
-    <button onclick="emptyCart()">Vaciar Carrito</button>
-
-
-    <div id="cart-modal" class="hidden">
-
-        <!-- contenido del carrito -->
-        <h2>Carrito de Compras</h2>
-        <div id="cart-items"></div>
-        <button id="checkout-button">Finalizar Compra <a class="boton-finalizar" href="./html/carrito.html"></a></button>
-        <button id="close-cart-button">Cerrar</button>
-    </div>
-
-<!-- botón para finalizar compra -->
-    <a class="finalizar-compra" href="./html/carrito.html">Finalizar Compra</a>
-    <p id="purchase-message"></p>
-</main>  
-</div>
-<!--sweetalert-->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--sweetalert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

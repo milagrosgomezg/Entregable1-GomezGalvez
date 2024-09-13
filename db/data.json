@@ -1,17 +1,18 @@
  
 [
-
- {
+    {
         "id": 1,
         "nombre": "balancin",
+        "imagen": "../css/balancin.jpg",
         "material": "madera",
         "color": "multicolor",
         "montessori": true,
         "precio": 50000
     },
-   {
+    {
         "id": 2,
         "nombre": "torre de aprendizaje",
+        "imagen": "../css/torre-aprendizaje.jpg",
         "material": "madera",
         "color": "marron",
         "montessori": true,
@@ -20,118 +21,118 @@
     {
         "id": 3,
         "nombre": "tobogan",
+        "imagen": "../css/tobogan.jpg",
         "material": "madera",
-       " color": "celeste",
-       " montessori": false,
-       " precio": 40000
+        "color": "celeste",
+        "montessori": false,
+        "precio": 40000
     },
-    
     {
         "id": 4,
         "nombre": "sube y baja",
+        "imagen": "../css/sube-baja.jpg",
         "material": "madera",
         "color": "multicolor",
         "montessori": false,
         "precio": 40000
     },
-    
-   {
-       "id": 5,
+    {
+        "id": 5,
         "nombre": "rampa",
+        "imagen": "../css/rampa.png",
         "material": "madera",
         "color": "multicolor",
         "montessori": true,
         "precio": 50000
     },
-    
     {
         "id": 6,
         "nombre": "juguete de arrastre",
+        "imagen": "../css/juguete-arrastre.jpg",
         "material": "madera",
         "color": "verde",
         "montessori": false,
         "precio": 40000
     },
-    
-   {
+    {
         "id": 7,
         "nombre": "pata pata",
+        "imagen": "../css/pata-pata.jpg",
         "material": "madera",
         "color": "multicolor",
         "montessori": true,
         "precio": 45000
     },
-    
     {
         "id": 8,
         "nombre": "hamaca",
+        "imagen": "../css/hamaca.jpeg",
         "material": "madera",
         "color": "multicolor",
         "montessori": false,
         "precio": 20000
     },
-    
     {
         "id": 9,
         "nombre": "tablero sensorial",
+        "imagen": "../css/tablero-sensorial.png",
         "material": "madera",
         "color": "rosa",
         "montessori": true,
         "precio": 30000
     },
-    
-   {
-        "id": 10,    
+    {
+        "id": 10,
         "nombre": "xilofon",
+        "imagen": "../css/xilofon.png",
         "material": "madera",
         "color": "multicolor",
         "montessori": false,
         "precio": 25000
     },
-    
-  {
+    {
         "id": 11,
         "nombre": "encastre",
+        "imagen": "../css/encastre.jpg",
         "material": "madera",
         "color": "multicolor",
         "montessori": true,
         "precio": 15000
     },
-    
     {
         "id": 12,
         "nombre": "rampa de autos",
+        "imagen": "../css/rampa-autos.jpeg",
         "material": "madera",
         "color": "rojo",
         "montessori": false,
         "precio": 25000
     },
-    
     {
         "id": 13,
         "nombre": "juego de platos",
+        "imagen": "../css/juego-platos (1).jpeg",
         "material": "madera",
         "color": "marron",
         "montessori": false,
         "precio": 25000
     },
-    
-   {
+    {
         "id": 14,
         "nombre": "equilibristas",
+        "imagen": "../css/equilibristas.jpeg",
         "material": "madera",
         "color": "marron",
         "montessori": false,
         "precio": 15000
     },
-    
-   {
+    {
         "id": 15,
         "nombre": "animales",
+        "imagen": "../css/animales.jpeg",
         "material": "madera",
         "color": "marron",
         "montessori": false,
         "precio": 10000
     }
-    
 ]

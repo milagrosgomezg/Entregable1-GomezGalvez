@@ -65,20 +65,40 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
         const total = cartItems.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+        
+        Swal.fire({
+            title: 'Resumen de Compra',
+            html: `
+                <h3>Gracias por tu compra, ${user.username}!</h3>
+                ${cartItems.map(item => `
+                    <div style="margin-bottom: 10px;">
+                        <h4>${item.nombre}</h4>
+                        <p>Cantidad: ${item.cantidad}</p>
+                        <p>Precio: $${item.precio}</p>
+                        <p>Subtotal: $${item.precio * item.cantidad}</p>
+                    </div>
+                `).join('')}
+                <hr>
+                <h4>Total: $${total}</h4>
+            `,
+            icon: 'info',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#28a745'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("cartProducts");
+                localStorage.removeItem("user");
+                summaryContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
+            }
+        });
+    } else {
         Toastify({
-            text: `Compra finalizada. Total: $${total}`,
+            text: "Por favor, inicie sesión para completar la compra.",
             duration: 3000,
             close: true,
             gravity: "top",
             position: "right",
-            backgroundColor: "linear-gradient(to right, #004d00, #66ff66, #d2b48c, #f5f5dc)"
+            backgroundColor: "linear-gradient(to right, #ff0000, #ff4d4d)"
         }).showToast();
-
-        // redirigir a la página principal después de mostrar el mensaje
-        setTimeout(() => {
-            localStorage.removeItem("cartProducts");
-            localStorage.removeItem("user");
-            window.location.href = "../index.html";
-        }, 3000); 
-    } 
+    }
 });

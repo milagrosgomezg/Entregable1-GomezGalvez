@@ -1,360 +1,78 @@
 
-// buscar producto
-let searchButton = document.getElementById("search-button");
-let searchInput = document.getElementById("search-input");
-let stockMessage = document.getElementById("stock-message");
-let selectButton = document.getElementById("select-button");
-let productSelect = document.getElementById("product-select");
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+const stockMessage = document.getElementById("stock-message");
+const productos = document.getElementById("products-container");
+const totalMessage = document.getElementById("total-message");
+const cartProductsDiv = document.getElementById("cart-products");
+const cartLogo = document.getElementById('cart-logo');
+const cartModal = document.getElementById('cart-modal');
+const closeCartButton = document.getElementById('close-cart-button');
+const emptyCartButton = document.getElementById('empty-cart-button');
+const finalizarCompraButton = document.getElementById('finalizar-compra');
+const purchaseMessage = document.getElementById('purchase-message');
+const loginButton = document.getElementById('login-button');
+const loggedInSection = document.getElementById('logged-in-section');
+const purchaseSummary = document.getElementById('purchase-summary');
 
-// verificar si hay stock
+// productos (NUEVO: se cargan desde un archivo JSON)
+let juegos = [];
+fetch('./db/data.json')
+    .then(response => response.json())
+    .then(data => {
+        juegos = data;
+        renderProductos(juegos);
+    })
+    .catch(error => console.error('Error cargando los productos:', error));
+
+// cargar productos del carrito desde localStorage
+let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+
+// función para verificar stock
 function checkStock(juegoNombre) {
     return juegos.some(juego => juego.nombre.toLowerCase() === juegoNombre.toLowerCase());
 }
 
+// función para manejar la búsqueda de productos
 searchButton.onclick = () => {
-    let buscar = searchInput.value;
+    const buscar = searchInput.value.trim();
 
-try { 
-    // intentar realizar la búsqueda
-    if (!buscar) throw new Error("El campo de búsqueda está vacío.");
-    
-    if (checkStock(buscar)) {
-        stockMessage.innerHTML = "Lo tenemos! Continúe con su compra";
-    } else {
-        stockMessage.innerHTML = "Lamentablemente, el juego buscado no se encuentra en stock";
-    }
+    try { 
+        if (!buscar) throw new Error("El campo de búsqueda está vacío.");
+        
+        if (checkStock(buscar)) {
+            stockMessage.innerHTML = "Lo tenemos! Continúe con su compra";
+        } else {
+            stockMessage.innerHTML = "Lamentablemente, el juego buscado no se encuentra en stock";
+        }
 
     } catch (error) {
-    // capturar y mostrar cualquier error
-    stockMessage.innerHTML = `Error: ${error.message}`;
+        stockMessage.innerHTML = `Error: ${error.message}`;
     } finally {
-    stockMessage.style.display = 'block';  
+        stockMessage.style.display = 'block';  
     }
 };
 
-// productos
-const juegos = [
-   
-    {
-        id: 1,
-        nombre: "balancin",
-        imagen: "../css/balancin.jpg",
-        material: "madera",
-        color: "multicolor",
-        montessori: true,
-        precio: 50000,
-    },
-   {
-        id: 2,
-        nombre: "torre de aprendizaje",
-        imagen: "../css/torre-aprendizaje.jpg",
-        material: "madera",
-        color: "marron",
-        montessori: true,
-        precio: 50000
-    },
-    {
-        id: 3,
-        nombre: "tobogan",
-        imagen: "../css/tobogan.jpg",
-        material: "madera",
-        color: "celeste",
-        montessori: false,
-        precio: 40000
-    },
-    
-    {
-        id: 4,
-        nombre: "sube y baja",
-        imagen: "../css/sube-baja.jpg",
-        material: "madera",
-        color: "multicolor",
-        montessori: false,
-        precio: 40000
-    },
-    
-   {
-        id: 5,
-        nombre: "rampa",
-        imagen: "../css/rampa.png",
-        material: "madera",
-        color: "multicolor",
-        montessori: true,
-        precio: 50000
-    },
-    
-    {
-        id: 6,
-        nombre: "juguete de arrastre",
-        imagen: "../css/juguete-arrastre.jpg",
-        material: "madera",
-        color: "verde",
-        montessori: false,
-        precio: 40000
-    },
-    
-   {
-        id: 7,
-        nombre: "pata pata",
-        imagen: "../css/pata-pata.jpg" ,
-        material: "madera",
-        color: "multicolor",
-        montessori: true,
-        precio: 45000
-    },
-    
-    {
-        id: 8,
-        nombre: "hamaca",
-        imagen: "../css/hamaca.jpeg" ,
-        material: "madera",
-        color: "multicolor",
-        montessori: false,
-        precio: 20000
-    },
-    
-    {
-        id: 9,
-        nombre: "tablero sensorial",
-        imagen: "../css/tablero-sensorial.png",
-        material: "madera",
-        color: "rosa",
-        montessori: true,
-        precio: 30000
-    },
-    
-   {
-        id: 10,    
-        nombre: "xilofon",
-        imagen: "../css/xilofon.png",
-        material: "madera",
-        color: "multicolor",
-        montessori: false,
-        precio: 25000
-    },
-    
-  {
-        id: 11,
-        nombre: "encastre",
-        imagen: "../css/encastre.jpg",
-        material: "madera",
-        color: "multicolor",
-        montessori: true,
-        precio: 15000
-    },
-    
-    {
-        id: 12,
-        nombre: "rampa de autos",
-        imagen: "../css/rampa-autos.jpeg",
-        material: "madera",
-        color: "rojo",
-        montessori: false,
-        precio: 25000
-    },
-    
-    {
-        id: 13,
-        nombre: "juego de platos",
-        imagen: "../css/juego-platos (1).jpeg",
-        material: "madera",
-        color: "marron",
-        montessori: false,
-        precio: 25000
-    },
-    
-   {
-        id: 14,
-        nombre: "equilibristas",
-        imagen: "../css/equilibristas.jpeg",
-        material: "madera",
-        color: "marron",
-        montessori: false,
-        precio: 15000
-    },
-    
-   {
-        id: 15,
-        nombre: "animales",
-        imagen: "../css/animales.jpeg",
-        material: "madera",
-        color: "marron",
-        montessori: false,
-        precio: 10000
-    }
-    
-];
-
-let cartProducts = [];
-let productos = document.getElementById("products-container");
-let totalMessage = document.getElementById("total-message");
-let cartProductsDiv = document.getElementById("cart-products");
-
-document.addEventListener('DOMContentLoaded', function() {
-    renderProductos(juegos);
-    addToCartButton();
-    const cartLogo = document.getElementById('cart-counter');
-    const cartCounter = document.getElementById('cart-counter'); 
-    const finalizarCompraButton = document.getElementById('finalizar-compra');
-    const purchaseMessage = document.getElementById('purchase-message');
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    const stockMessage = document.getElementById('stock-message');
-    const cartModal = document.getElementById('cart-modal');
-    const cartItems = document.getElementById('cart-items');
-    const closeCartButton = document.getElementById('close-cart-button');
-    const emptyCartButton = document.querySelector('button[onclick="emptyCart()"]');
-
-    let cartProducts = [];
-})
-
-let cart = JSON.parse(localStorage.getItem('cart')) || {};
-let products = [
-    { id: 1, name: 'Balancin', price: 50000 },
-    { id: 2, name: 'Torre de aprendizaje', price: 50000 },
-    { id: 3, name: 'Tobogan', price: 40000 },
-    { id: 4, name: 'Sube y Baja', price: 40000 },
-    { id: 5, name: 'Rampa', price: 50000 },
-    { id: 6, name: 'Juguete de arrastre', price: 40000 },
-    { id: 7, name: 'Pata Pata', price: 45000 },
-    { id: 8, name: 'Hamaca', price: 20000 },
-    { id: 9, name: 'Tablero Sensorial', price: 30000 },
-    { id: 10, name: 'Xilofon', price: 25000 },
-    { id: 11, name: 'Encastre', price: 15000 },
-    { id: 12, name: 'Rampa de autos', price: 25000 },
-    { id: 13, name: 'Juego de platos', price: 25000 },
-    { id: 14, name: 'Equilibristas', price: 15000 },
-    { id: 15, name: 'Animales', price: 10000 },
-];
-
-// función para finalizar compra con manejo de errores
-function finalizePurchase() {
-    try {
-        // verificar si hay productos en el carrito
-        if (cartProducts.length === 0) {
-            throw new Error("Tu carrito está vacío. Agrega productos para finalizar la compra.");
-        }
-
-        // simular el proceso de compra (por ejemplo, enviar datos al servidor)
-        purchaseMessage.innerText = "Procesando tu compra...";
-
-        // si todo va bien, mostrar éxito
-        setTimeout(() => {
-            purchaseMessage.innerText = "¡Compra finalizada con éxito! Gracias por elegir KIDOSSORI.";
-            emptyCart(); 
-        }, 1000); // simula que hay retardo en el procesamiento
-
-    } catch (error) {
-        // mostrar mensaje de error al usuario
-        purchaseMessage.innerText = `Error: ${error.message}`;
-    } finally {
-        console.log("Finalización del intento de compra.");
-    }
-}
-    
- // actualizar el contador de productos en el carrito
- function updateCartCounter() {
-    const totalItems = cartProducts.reduce((acc, product) => acc + product.cantidad, 0);
-    cartCounter.innerText = totalItems;
-}
-
-// renderizar productos
+// renderizar productos 
 function renderProductos(juegosArray) {
     productos.innerHTML = "";
     juegosArray.forEach(juego => {
         const card = document.createElement("div");
         card.classList.add("juego");
         card.innerHTML = `
-            <img src="./css/${juego.imagen}"
+            <img src="${juego.imagen}" alt="${juego.nombre}">
             <h3>Juego: ${juego.nombre}</h3>
             <h4>Precio unitario: $${juego.precio}</h4>
             <button class="productoSumar" data-id="${juego.id}">+</button>
             <button class="productoRestar" data-id="${juego.id}">-</button>
-            <span class="cantidadProducto" data-id="${juego.id}">Cantidad: 0</span>
-            <span class="costoTotalProducto" data-id="${juego.id}">Costo Total: $0</span>
         `;
         productos.appendChild(card);
     });
+
+    addToCartButton(); 
 }
 
-// actualizar cantidad por producto y el costo total por producto
-function updateProductQuantityAndCost(productId, quantity, totalCost) {
-    const quantitySpan = document.querySelector(`.cantidadProducto[data-id="${productId}"]`);
-    const totalCostSpan = document.querySelector(`.costoTotalProducto[data-id="${productId}"]`);
-
-    if (quantitySpan && totalCostSpan) {
-        quantitySpan.textContent = `Cantidad: ${quantity}`;
-        totalCostSpan.textContent = `Costo Total: $${totalCost}`;
-    }
-}
-
-// agregar productos al carrito
-function addToCartButton() {
-    const sumarButtons = document.querySelectorAll(".productoSumar");
-    const restarButtons = document.querySelectorAll(".productoRestar");
-
-    sumarButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const juegoId = parseInt(e.currentTarget.dataset.id);
-            const selectedJuego = juegos.find(juego => juego.id === juegoId);
-
-            if (selectedJuego) {
-                const existingProduct = cartProducts.find(product => product.id === juegoId);
-                if (existingProduct) {
-                    existingProduct.cantidad++;
-                } else {
-                    cartProducts.push({ ...selectedJuego, cantidad: 1 });
-                }
-                const cantidad = existingProduct ? existingProduct.cantidad : 1;
-                updateProductQuantityAndCost(juegoId, cantidad, selectedJuego.precio * cantidad);
-                updateCart();
-                localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-            }
-        });
-    });
-
-    restarButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const juegoId = parseInt(e.currentTarget.dataset.id);
-            const existingProduct = cartProducts.find(product => product.id === juegoId);
-
-            if (existingProduct) {
-                if (existingProduct.cantidad > 0) {
-                    existingProduct.cantidad--;
-                } else {
-                    cartProducts = cartProducts.filter(product => product.id !== juegoId);
-                }
-                const cantidad = existingProduct ? existingProduct.cantidad : 0;
-                updateProductQuantityAndCost(juegoId, cantidad, existingProduct ? existingProduct.precio * cantidad : 0);
-                updateCart();
-                localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-            }
-        });
-    });
-}
-
-function addToCart(product) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingProduct = cart.find(item => item.id === product.id);
-
-    if (existingProduct) {
-        existingProduct.quantity += product.quantity;
-    } else {
-        cart.push(product);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    Toastify({
-        text: "Producto añadido al carrito",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: 'right',
-        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
-    }).showToast();
-}
-
-// actualizar el carrito
+// función para actualizar el carrito
 function updateCart() {
     cartProductsDiv.innerHTML = "";
     let total = 0;
@@ -373,29 +91,7 @@ function updateCart() {
 
     totalMessage.innerText = `Total del carrito: $${total}`;
 
-// actualizar el contador del carrito
-    function updateCartCounter() {
-        const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
-    cartCounter.textContent = totalItems;
-    }
-
-// función para actualizar el carrito en el modal
-function updateCartModal() {
-    cartItems.innerHTML = '';
-    let totalPrice = 0;
-    for (const [id, item] of Object.entries(cart)) {
-        const product = products.find(p => p.id == id);
-        totalPrice += product.price * item.quantity;
-        cartItems.innerHTML += `
-            <div>
-                <p>${product.name}: ${item.quantity} x $${product.price}</p>
-            </div>
-        `;
-    }
-    cartItems.innerHTML += `<p>Total: $${totalPrice}</p>`;
-}
-
-    // eventos para eliminar productos
+    // actualizar eventos para eliminar productos
     document.querySelectorAll(".eliminarProducto").forEach(button => {
         button.addEventListener("click", (e) => {
             const juegoId = parseInt(e.currentTarget.dataset.id);
@@ -404,47 +100,93 @@ function updateCartModal() {
     });
 }
 
-// remover producto del carrito
-function removeProduct(juegoId) {
-    cartProducts = cartProducts.filter(product => product.id !== juegoId);
+// función para añadir productos al carrito
+function addToCartButton() {
+    const sumarButtons = document.querySelectorAll(".productoSumar");
+    const restarButtons = document.querySelectorAll(".productoRestar");
+
+    sumarButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const juegoId = parseInt(e.currentTarget.dataset.id);
+            const selectedJuego = juegos.find(juego => juego.id === juegoId);
+
+            if (selectedJuego) {
+                const existingProduct = cartProducts.find(product => product.id === juegoId);
+                if (existingProduct) {
+                    existingProduct.cantidad++;
+                } else {
+                    cartProducts.push({ ...selectedJuego, cantidad: 1 });
+                }
+                updateCart();
+                localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+            }
+        });
+    });
+
+    restarButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const juegoId = parseInt(e.currentTarget.dataset.id);
+            const existingProduct = cartProducts.find(product => product.id === juegoId);
+
+            if (existingProduct) {
+                if (existingProduct.cantidad > 0) {
+                    existingProduct.cantidad--;
+                }
+                if (existingProduct.cantidad === 0) {
+                    cartProducts = cartProducts.filter(product => product.id !== juegoId);
+                }
+                updateCart();
+                localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+            }
+        });
+    });
+}
+
+// función para vaciar carrito
+function emptyCart() {
+    cartProducts = [];
+    localStorage.removeItem('cartProducts');
     updateCart();
-    localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
-}
-
-function removeFromCart(productId) {
-    if (cart[productId]) {
-        cart[productId].quantity -= 1;
-        if (cart[productId].quantity <= 0) {
-            delete cart[productId];
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCounter();
-        updateCartModal();
-        showSuccessMessage('Producto eliminado del carrito');
-    }
-}
-
-
-// función para finalizar la compra
-function finalizePurchase() {
     Swal.fire({
         icon: 'success',
-        title: 'Compra finalizada',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Carrito vaciado',
+        text: 'Tu carrito de compras ha sido vaciado correctamente',
+        timer: 2000
     });
-    localStorage.removeItem('cart');
-    cart = {};
-    updateCartCounter();
-    updateCartModal();
 }
 
-// inicializar productos y eventos
-renderProductos(juegos);
-addToCartButton();
-const storedCart = JSON.parse(localStorage.getItem("cartProducts")) || [];
-cartProducts = storedCart;
-updateCart();
+emptyCartButton.addEventListener('click', emptyCart);
+
+// función para finalizar compra
+function finalizePurchase() {
+    Swal.fire({
+        title: 'Completa tus datos',
+        html: `
+            <input id="name" class="swal2-input" placeholder="Nombre">
+            <input id="email" class="swal2-input" placeholder="Email">
+        `,
+        confirmButtonText: 'Finalizar Compra',
+        preConfirm: () => {
+            const name = Swal.getPopup().querySelector('#name').value;
+            const email = Swal.getPopup().querySelector('#email').value;
+            if (!name || !email) {
+                Swal.showValidationMessage('Por favor ingresa tu nombre y email');
+            }
+            return { name, email };
+        }
+    }).then(result => {
+        const { name, email } = result.value;
+        if (name && email) {
+            purchaseMessage.innerText = `Compra finalizada con éxito! Gracias ${name} por tu compra.`;
+            localStorage.removeItem('cartProducts');
+            cartProducts = [];
+            updateCart();
+            Swal.fire('Compra Finalizada', 'Gracias por tu compra!', 'success');
+        }
+    });
+}
+
+finalizarCompraButton.addEventListener('click', finalizePurchase);
 
 // mostrar/ocultar el carrito al hacer clic en el logo
 cartLogo.addEventListener('click', () => {
@@ -456,98 +198,86 @@ closeCartButton.addEventListener('click', () => {
     cartModal.classList.add('hidden');
 });
 
-// vaciar carrito
-let emptyCartButton = document.getElementById("empty-cart-button");
-emptyCartButton.onclick = () => {
-    emptyCart();
-};  
+// manejo de inicio de sesión
+loginButton.addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-let container = document.getElementById("products-container")
-
-const finalizarCompraButton = document.getElementById('finalizar-compra');
-if (finalizarCompraButton) {
-    finalizarCompraButton.addEventListener('click', function() {
-        window.location.href = './html/carrito.html'; 
-    });
-}
-
-fetch("./db/data.json")
-.then(response => response.json())
-.then(data => {
-    data.forEach(product => {
-        const card = document.createElement("div")
-        card.innerHTML = `<h3>Id: ${product.id}</h3>
-                           <h3>Nombre: ${product.nombre}</h3>
-                           <h3>Material: ${product.material}</h3>
-                           <h3>Color: ${product.color}</h3> 
-                           <h3>Montessori: ${product.montessori}</h3>
-                           <h3>Precio: ${product.precio}</h3>`
-            container.appendChild(card)
-    })
-})
-
-document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('login-button');
-    const loginMessage = document.getElementById('login-message');
-    const loggedInSection = document.getElementById('logged-in-section');
-    const purchaseSummary = document.getElementById('purchase-summary');
-    
-    loginButton.addEventListener('click', () => {
-        const username = document.getElementById('username-input').value;
-
-        if (username) {
-            // sim de inicio de sesión
-            fetch(`https://jsonplaceholder.typicode.com/users?username=${username}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        const user = data[0];
-                        loginMessage.textContent = `Bienvenido, ${user.name}`;
-                        
-                        // Mostrar resumen de compra
-                        showPurchaseSummary(user);
-                    } else {
-                        loginMessage.textContent = 'Usuario no encontrado';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    loginMessage.textContent = 'Error al iniciar sesión';
-                });
-        } else {
-            loginMessage.textContent = 'Por favor, ingresa un nombre de usuario';
-        }
-    });
-
-    document.getElementById("login-button").addEventListener("click", () => {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-    
-        if(username && password) {
-            localStorage.setItem("user", JSON.stringify({ username }));
-            Swal.fire('Login exitoso', `Bienvenido ${username}`, 'success');
-            // muestra sección de resumen de compra después del login
-            document.getElementById("logged-in-section").classList.remove("hidden");
-        } else {
-            Swal.fire('Error', 'Por favor ingresa tus credenciales', 'error');
-        }
-    });
-
-    function showPurchaseSummary(user) {
-        loggedInSection.classList.remove('hidden');
-
-        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        let total = 0;
-
-        purchaseSummary.innerHTML = `
-            <h3>Usuario: ${user.name}</h3>
-            <ul>
-                ${cartItems.map(item => {
-                    total += item.price * item.quantity;
-                    return `<li>${item.title} - Cantidad: ${item.quantity} - Precio: $${item.price}</li>`;
-                }).join('')}
-            </ul>
-            <p><strong>Total:</strong> $${total}</p>
-        `;
+    if (username && password) {
+        localStorage.setItem("user", JSON.stringify({ username }));
+        Swal.fire('Login exitoso', `Bienvenido ${username}`, 'success');
+        loggedInSection.classList.remove("hidden");
+        showPurchaseSummary({ name: username });
+    } else {
+        Swal.fire('Error', 'Por favor ingresa tus credenciales', 'error');
     }
 });
+
+// mostrar resumen de compra
+function showPurchaseSummary(user) {
+    loggedInSection.classList.remove('hidden');
+    const cartItems = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    let total = 0;
+
+    purchaseSummary.innerHTML = `
+        <h3>Usuario: ${user.name}</h3>
+        <ul>
+            ${cartItems.map(item => {
+                total += item.precio * item.cantidad;
+                return `<li>${item.nombre} - Cantidad: ${item.cantidad} - Precio: $${item.precio}</li>`;
+            }).join('')}
+        </ul>
+        <p><strong>Total:</strong> $${total}</p>
+    `;
+}
+
+// función para actualizar el contador del carrito
+function updateCartCounter() {
+    const cartCount = document.querySelector("#cart-icon .cart-count");
+    const totalItems = cartItems.reduce((total, item) => total + item.cantidad, 0);
+    if (totalItems > 0) {
+        cartCount.textContent = totalItems;
+        cartCount.classList.remove("hidden");
+    } else {
+        cartCount.classList.add("hidden");
+    }
+}
+
+// función para actualizar el total y el precio acumulado en las cards
+function updateCartTotals() {
+    const totalContainer = document.getElementById("total-message");
+    if (cartItems.length > 0) {
+        let total = cartItems.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+        totalContainer.innerHTML = `Total del carrito: $${total}`;
+    } else {
+        totalContainer.innerHTML = "";
+    }
+}
+
+// llama a las funciones para actualizar el contador y los totales cuando se carga la página
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartCounter();
+    updateCartTotals();
+});
+
+// manejo de eventos para agregar y eliminar productos
+document.getElementById("add-product-button").addEventListener("click", () => {
+    const product = {
+        nombre: "Producto Ejemplo",
+        precio: 100,
+        cantidad: 1
+    };
+    addToCart(product);
+});
+
+summaryContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("remove-item")) {
+        const index = parseInt(event.target.dataset.index);
+        removeFromCart(index);
+        displayCartItems(); 
+    }
+});
+
+// actualiza el contador y el total cuando se carga la página
+updateCartCounter();
+updateCartTotals();
