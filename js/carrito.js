@@ -50,6 +50,59 @@ loginButton.addEventListener("click", () => {
     }
 });
 
+function displayCartItems() {
+    summaryContainer.innerHTML = "";
+    if (cartItems.length === 0) {
+        summaryContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
+    } else {
+        let total = 0;
+        cartItems.forEach((item, index) => {
+            const subtotal = item.precio * item.cantidad;
+            total += subtotal;
+
+            summaryContainer.innerHTML += `
+                <div class="carrito-juego">
+                    <h3>${item.nombre}</h3>
+                    <p>Cantidad: 
+                        <button class="decrease-quantity" data-index="${index}">-</button>
+                        ${item.cantidad}
+                        <button class="increase-quantity" data-index="${index}">+</button>
+                    </p>
+                    <p>Precio: $${item.precio}</p>
+                    <p>Subtotal: $${subtotal}</p>
+                    <button class="remove-item" data-index="${index}">Eliminar</button>
+                </div>
+            `;
+        });
+
+        // total
+        summaryContainer.innerHTML += `<h3>Total: $${total}</h3>`;
+    }
+}
+
+// actualizar las cantidades
+summaryContainer.addEventListener("click", (event) => {
+    const index = parseInt(event.target.dataset.index);
+
+    if (event.target.classList.contains("increase-quantity")) {
+        cartItems[index].cantidad++;
+    } else if (event.target.classList.contains("decrease-quantity")) {
+        if (cartItems[index].cantidad > 1) {
+            cartItems[index].cantidad--;
+        } else {
+            cartItems.splice(index, 1); // Eliminar si la cantidad llega a 0
+        }
+    } else if (event.target.classList.contains("remove-item")) {
+        cartItems.splice(index, 1); // Eliminar el producto
+    }
+
+    localStorage.setItem("cartProducts", JSON.stringify(cartItems));
+    displayCartItems();
+});
+
+displayCartItems();
+
+
 // eliminar producto individual
 summaryContainer.addEventListener("click", (event) => {
     if (event.target.classList.contains("remove-item")) {
@@ -89,6 +142,9 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
                 localStorage.removeItem("cartProducts");
                 localStorage.removeItem("user");
                 summaryContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
+                
+                // redirigir a index.html después de confirmar
+                window.location.href = "../index.html";
             }
         });
     } else {
